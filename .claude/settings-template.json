@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "wordpress": {
+      "command": "claudeus-wp-mcp",
+      "env": {
+        "WP_SITES_PATH": "~/.claude/wp-sites.json"
+      }
+    }
+  }
+}

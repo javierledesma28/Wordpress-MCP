@@ -1,0 +1,8 @@
+node_modules/
+.env
+*.env
+wp-sites.json
+secrets.json
+*.local.json
+.DS_Store
+Thumbs.db

@@ -1,0 +1,479 @@
+/* ═══════════════════════════════════════════════════════
+   GREYNOISE DARK THEME — blog.javierledesma.com.ar
+   Inspired by viz.greynoise.io
+   ═══════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+/* ── Variables ── */
+:root {
+  --gn-bg:          #080c14;
+  --gn-bg2:         #0d1321;
+  --gn-card:        #0f1829;
+  --gn-elevated:    #162032;
+  --gn-accent:      #00d4aa;
+  --gn-accent2:     #3b82f6;
+  --gn-warn:        #f59e0b;
+  --gn-danger:      #ef4444;
+  --gn-text:        #e2e8f0;
+  --gn-text2:       #94a3b8;
+  --gn-muted:       #475569;
+  --gn-border:      rgba(0,212,170,0.12);
+  --gn-border2:     rgba(255,255,255,0.06);
+  --gn-glow:        0 0 24px rgba(0,212,170,0.12);
+  --gn-glow2:       0 0 40px rgba(0,212,170,0.28);
+  --gn-mono:        'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  --gn-sans:        'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Override Kubio color vars */
+  --kubio-color-1:  0,212,170;
+  --kubio-color-2:  59,130,246;
+  --kubio-color-3:  148,163,184;
+  --kubio-color-4:  13,19,33;
+  --kubio-color-5:  226,232,240;
+  --kubio-color-6:  8,12,20;
+}
+
+/* ── Base reset to dark ── */
+html, body {
+  background-color: var(--gn-bg) !important;
+  color: var(--gn-text) !important;
+  font-family: var(--gn-sans) !important;
+  -webkit-font-smoothing: antialiased;
+  scrollbar-color: var(--gn-border) var(--gn-bg);
+  scrollbar-width: thin;
+}
+
+/* Subtle noise texture */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.5;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-track { background: var(--gn-bg); }
+::-webkit-scrollbar-thumb { background: var(--gn-border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gn-accent); }
+::selection { background: rgba(0,212,170,0.22); color: #fff; }
+
+/* ── All sections / wrappers ── */
+section, div, main, aside, article,
+[class*="kubio-section"],
+[class*="kubio-row"],
+[class*="kubio-col"],
+.site-content, #content, .entry-content {
+  background-color: transparent !important;
+}
+
+/* ── Header / Navigation ── */
+header, .site-header, #masthead,
+[class*="header-wrapper"],
+[class*="kubio-navigation"],
+nav.kubio-nav {
+  background: rgba(8,12,20,0.96) !important;
+  backdrop-filter: blur(14px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(180%) !important;
+  border-bottom: 1px solid var(--gn-border) !important;
+  box-shadow: 0 1px 0 var(--gn-border), var(--gn-glow) !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+}
+
+/* ── Nav links ── */
+nav a, .menu-item a, .nav-menu a,
+[class*="kubio-nav"] a,
+header a:not(.site-title a) {
+  font-family: var(--gn-mono) !important;
+  font-size: 0.82rem !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--gn-text2) !important;
+  text-decoration: none !important;
+  transition: color 0.2s, text-shadow 0.2s !important;
+}
+nav a:hover, .menu-item a:hover,
+[class*="kubio-nav"] a:hover {
+  color: var(--gn-accent) !important;
+  text-shadow: 0 0 10px rgba(0,212,170,0.5) !important;
+}
+
+/* ── Site title / logo ── */
+.site-title a, .site-branding a,
+[class*="kubio-site-title"] {
+  font-family: var(--gn-mono) !important;
+  color: var(--gn-accent) !important;
+  text-decoration: none !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* ── Hero / cover sections ── */
+[class*="kubio-cover"],
+[class*="kubio-hero"],
+.wp-block-cover {
+  background-color: var(--gn-bg) !important;
+  border-bottom: 1px solid var(--gn-border2) !important;
+}
+
+/* ── Headings ── */
+h1, h2, h3, h4, h5, h6,
+.wp-block-heading {
+  font-family: var(--gn-mono) !important;
+  color: var(--gn-text) !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.02em !important;
+}
+h1, .h1 {
+  color: var(--gn-accent) !important;
+  font-size: clamp(1.8rem, 4vw, 2.8rem) !important;
+}
+h2, .h2 {
+  color: var(--gn-text) !important;
+  border-left: 3px solid var(--gn-accent) !important;
+  padding-left: 0.85rem !important;
+  margin-top: 2.5rem !important;
+}
+h3, .h3 { color: #7dd3fc !important; }
+h4, h5, h6 { color: var(--gn-text2) !important; }
+
+/* ── Body text / paragraphs ── */
+p, li, td, th, span, label {
+  color: var(--gn-text2) !important;
+  line-height: 1.8 !important;
+}
+.entry-content p, .post-content p {
+  font-size: 1.02rem !important;
+  margin-bottom: 1.4rem !important;
+}
+
+/* ── Links ── */
+a {
+  color: var(--gn-accent) !important;
+  text-decoration: none !important;
+  transition: color 0.2s, text-shadow 0.2s !important;
+}
+a:hover {
+  color: #fff !important;
+  text-shadow: 0 0 8px rgba(0,212,170,0.6) !important;
+}
+
+/* ── Blog post cards ── */
+article.post, article.type-post,
+.post-card, .entry,
+[class*="kubio-post-item"],
+[class*="blog-post"],
+.wp-block-post {
+  background: var(--gn-card) !important;
+  border: 1px solid var(--gn-border2) !important;
+  border-radius: 10px !important;
+  padding: 1.5rem !important;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease !important;
+}
+article.post:hover, article.type-post:hover,
+.post-card:hover, [class*="kubio-post-item"]:hover {
+  border-color: var(--gn-accent) !important;
+  box-shadow: var(--gn-glow) !important;
+  transform: translateY(-3px) !important;
+}
+
+/* Post titles in cards */
+.entry-title, .post-title, .wp-block-post-title,
+[class*="entry-title"], [class*="post-title"] {
+  font-family: var(--gn-mono) !important;
+  color: var(--gn-text) !important;
+  font-size: 1.15rem !important;
+  line-height: 1.4 !important;
+}
+.entry-title a, .post-title a, .wp-block-post-title a {
+  color: var(--gn-text) !important;
+}
+.entry-title a:hover, .post-title a:hover, .wp-block-post-title a:hover {
+  color: var(--gn-accent) !important;
+  text-shadow: none !important;
+}
+
+/* Post meta */
+.entry-meta, .post-meta, time, .post-date,
+.wp-block-post-date, [class*="entry-meta"] {
+  font-family: var(--gn-mono) !important;
+  font-size: 0.73rem !important;
+  color: var(--gn-muted) !important;
+  letter-spacing: 0.06em !important;
+}
+.entry-meta::before {
+  content: '> ';
+  color: var(--gn-accent);
+}
+
+/* ── Featured image ── */
+.post-thumbnail img, .wp-post-image,
+.wp-block-post-featured-image img {
+  border-radius: 8px !important;
+  border: 1px solid var(--gn-border2) !important;
+  filter: brightness(0.88) contrast(1.05) !important;
+  transition: filter 0.3s, transform 0.3s !important;
+}
+.post-thumbnail:hover img, .wp-post-image:hover {
+  filter: brightness(1) contrast(1.1) !important;
+  transform: scale(1.02) !important;
+}
+
+/* ── Excerpt ── */
+.entry-summary, .post-excerpt, .wp-block-post-excerpt {
+  color: var(--gn-text2) !important;
+  font-size: 0.92rem !important;
+  line-height: 1.7 !important;
+}
+
+/* ── "Read more" buttons ── */
+.read-more, .more-link, .wp-block-button__link,
+a.button, .btn, button,
+input[type="submit"] {
+  display: inline-block !important;
+  background: transparent !important;
+  border: 1px solid var(--gn-accent) !important;
+  color: var(--gn-accent) !important;
+  font-family: var(--gn-mono) !important;
+  font-size: 0.8rem !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  padding: 0.55rem 1.3rem !important;
+  border-radius: 4px !important;
+  transition: all 0.2s !important;
+  text-decoration: none !important;
+}
+.read-more:hover, .more-link:hover, .wp-block-button__link:hover,
+a.button:hover, .btn:hover, button:hover,
+input[type="submit"]:hover {
+  background: var(--gn-accent) !important;
+  color: var(--gn-bg) !important;
+  box-shadow: var(--gn-glow2) !important;
+  text-shadow: none !important;
+}
+
+/* ── Code blocks ── */
+code, kbd, samp {
+  font-family: var(--gn-mono) !important;
+  background: rgba(0,212,170,0.08) !important;
+  color: var(--gn-accent) !important;
+  padding: 0.18em 0.5em !important;
+  border-radius: 4px !important;
+  font-size: 0.87em !important;
+  border: 1px solid rgba(0,212,170,0.18) !important;
+}
+pre {
+  background: #0d1117 !important;
+  border: 1px solid rgba(0,212,170,0.14) !important;
+  border-left: 3px solid var(--gn-accent) !important;
+  border-radius: 8px !important;
+  padding: 1.4rem 1.6rem !important;
+  overflow-x: auto !important;
+  font-family: var(--gn-mono) !important;
+  font-size: 0.84rem !important;
+  line-height: 1.65 !important;
+  color: #e2e8f0 !important;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5) !important;
+}
+pre code {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  color: inherit !important;
+  font-size: inherit !important;
+}
+
+/* ── Blockquotes ── */
+blockquote {
+  border-left: 3px solid var(--gn-accent) !important;
+  background: rgba(0,212,170,0.04) !important;
+  padding: 1rem 1.5rem !important;
+  margin: 1.8rem 0 !important;
+  border-radius: 0 8px 8px 0 !important;
+  color: var(--gn-text2) !important;
+  font-style: italic !important;
+}
+
+/* ── Tables ── */
+table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  font-family: var(--gn-mono) !important;
+  font-size: 0.84rem !important;
+  background: var(--gn-card) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+th {
+  background: var(--gn-elevated) !important;
+  color: var(--gn-accent) !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  padding: 0.8rem 1rem !important;
+  border-bottom: 1px solid var(--gn-border) !important;
+}
+td {
+  padding: 0.65rem 1rem !important;
+  border-bottom: 1px solid var(--gn-border2) !important;
+  color: var(--gn-text2) !important;
+}
+tr:hover td { background: rgba(0,212,170,0.03) !important; }
+
+/* ── HR ── */
+hr {
+  border: none !important;
+  border-top: 1px solid var(--gn-border2) !important;
+  margin: 2.5rem 0 !important;
+}
+
+/* ── Tags & Categories ── */
+.tag-cloud-link, .cat-item a, .tags-links a,
+.category-link, [class*="tag-"], [class*="-tag"],
+.wp-block-tag-cloud a {
+  display: inline-block !important;
+  background: rgba(0,212,170,0.07) !important;
+  border: 1px solid rgba(0,212,170,0.22) !important;
+  color: var(--gn-accent) !important;
+  font-family: var(--gn-mono) !important;
+  font-size: 0.7rem !important;
+  padding: 0.22rem 0.7rem !important;
+  border-radius: 20px !important;
+  letter-spacing: 0.05em !important;
+  margin: 0.15rem !important;
+  text-decoration: none !important;
+  text-transform: uppercase !important;
+}
+.tag-cloud-link:hover, .cat-item a:hover, .tags-links a:hover {
+  background: var(--gn-accent) !important;
+  color: var(--gn-bg) !important;
+}
+
+/* ── Sidebar / widgets ── */
+.widget, .sidebar, aside,
+[class*="widget-area"], [class*="sidebar"] {
+  background: var(--gn-card) !important;
+  border: 1px solid var(--gn-border2) !important;
+  border-radius: 8px !important;
+  padding: 1.25rem !important;
+}
+.widget-title, .widgettitle {
+  font-family: var(--gn-mono) !important;
+  color: var(--gn-accent) !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  border-bottom: 1px solid var(--gn-border) !important;
+  padding-bottom: 0.6rem !important;
+  margin-bottom: 1rem !important;
+}
+
+/* ── Comments ── */
+.comment-content, #comments,
+.comment-list, .comment-body {
+  background: var(--gn-card) !important;
+  border: 1px solid var(--gn-border2) !important;
+  border-radius: 8px !important;
+  padding: 1.5rem !important;
+}
+.comment-author, .comment-meta {
+  color: var(--gn-accent) !important;
+  font-family: var(--gn-mono) !important;
+  font-size: 0.78rem !important;
+}
+
+/* ── Forms ── */
+input[type="text"], input[type="email"], input[type="url"],
+input[type="password"], input[type="search"], textarea, select {
+  background: var(--gn-bg2) !important;
+  border: 1px solid var(--gn-border2) !important;
+  color: var(--gn-text) !important;
+  font-family: var(--gn-mono) !important;
+  border-radius: 4px !important;
+  padding: 0.6rem 0.9rem !important;
+}
+input:focus, textarea:focus, select:focus {
+  outline: none !important;
+  border-color: var(--gn-accent) !important;
+  box-shadow: 0 0 0 3px rgba(0,212,170,0.12) !important;
+}
+
+/* ── Pagination ── */
+.pagination a, .nav-links a, .page-numbers,
+[class*="pagination"] a {
+  font-family: var(--gn-mono) !important;
+  color: var(--gn-text2) !important;
+  border: 1px solid var(--gn-border2) !important;
+  border-radius: 4px !important;
+  padding: 0.4rem 0.8rem !important;
+  font-size: 0.82rem !important;
+}
+.page-numbers.current, .pagination a:hover {
+  background: var(--gn-accent) !important;
+  color: var(--gn-bg) !important;
+  border-color: var(--gn-accent) !important;
+}
+
+/* ── Footer ── */
+footer, .site-footer, #colophon,
+[class*="footer-wrapper"] {
+  background: var(--gn-bg2) !important;
+  border-top: 1px solid var(--gn-border) !important;
+  color: var(--gn-muted) !important;
+  font-family: var(--gn-mono) !important;
+  font-size: 0.78rem !important;
+}
+footer a, .site-footer a {
+  color: var(--gn-text2) !important;
+}
+footer a:hover, .site-footer a:hover {
+  color: var(--gn-accent) !important;
+  text-shadow: 0 0 6px rgba(0,212,170,0.4) !important;
+}
+
+/* ── Images ── */
+img:not(.avatar):not([class*="logo"]):not([class*="icon"]) {
+  border-radius: 8px !important;
+  border: 1px solid var(--gn-border2) !important;
+}
+
+/* ── Mermaid diagrams (in blog posts) ── */
+.mermaid-diagram pre.mermaid {
+  border-left: none !important;
+  border: 1px solid rgba(0,212,170,0.2) !important;
+}
+
+/* ── Kubio-specific: panels, columns, stacked sections ── */
+[class*="kubio-"] {
+  background-color: transparent !important;
+}
+[class*="kubio-card"],
+[class*="kubio-panel"] {
+  background: var(--gn-card) !important;
+  border: 1px solid var(--gn-border2) !important;
+  border-radius: 10px !important;
+}
+
+/* ── Single post: reading progress feel ── */
+.single .entry-content {
+  max-width: 72ch !important;
+}
+
+/* ── Stats / numbers ── */
+[class*="stat-number"], [class*="counter"],
+[class*="kubio-counter"] {
+  font-family: var(--gn-mono) !important;
+  color: var(--gn-accent) !important;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  h1 { font-size: 1.75rem !important; }
+  h2 { font-size: 1.3rem !important; padding-left: 0.65rem !important; }
+  pre { font-size: 0.78rem !important; padding: 1rem !important; }
+}
