@@ -1,8 +1,34 @@
 node_modules/
+
+# Credenciales — nunca commitear
 .env
 *.env
 wp-sites.json
 secrets.json
 *.local.json
+
+# Overrides locales de Claude
+.claude/settings.local.json
+
+# Build outputs
+dist/
+build/
+
+# Logs
+*.log
+logs/
+
+# Cache
+.cache/
+.parcel-cache/
+*.tsbuildinfo
+
+# Sistema
 .DS_Store
 Thumbs.db
+*.swp
+*.swo
+
+# IDE
+.vscode/
+.idea/

@@ -1,0 +1,29 @@
+# Dependencias
+node_modules/
+
+# Credenciales (nunca leer)
+.env
+.env.*
+wp-sites.json
+secrets.json
+*.local.json
+
+# Build outputs
+dist/
+build/
+*.min.js
+*.min.css
+
+# Logs
+*.log
+logs/
+
+# Cache
+.cache/
+.parcel-cache/
+
+# Assets binarios en docs
+docs/assets/*.pdf
+docs/assets/*.docx
+docs/assets/*.pptx
+docs/assets/*.zip
